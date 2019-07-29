@@ -18,7 +18,7 @@ from thread_w_return import *
 def arg_parse():
     parser = argparse.ArgumentParser(description="Tensorflow Yolov3")
     parser.add_argument("--video", help="Path where video is located",
-                        default="assets/cars3.mp4", type=str)
+                        default="assets/cars4.mp4", type=str)
     parser.add_argument("--ckpt",  type=str, default="darknet/yolov3.ckpt",
                         help="The path of the weights to restore.")
     parser.add_argument("--conf", dest="confidence", help="Confidence threshold for predictions", default=0.5)
@@ -30,7 +30,7 @@ def arg_parse():
                         default=416, type=int)
     parser.add_argument("--letterbox_resize", type=lambda x: (str(x).lower() == 'true'), default=True,
                         help="Whether to use the letterbox resize.")
-    parser.add_argument("--save", help="Whether to save newly created vidoe", default=False, type=bool)
+    parser.add_argument("--save", help="Whether to save newly created video", default=False, type=bool)
 
     return parser.parse_args()
 
@@ -62,6 +62,7 @@ def run_inference_for_single_image(frame, lbox_resize, sess, input_data, inp_dim
 def detection_gpu(frame_list, device_name,
                   letterbox, sess, input_data,
                   inp_dim, boxes, scores, labels, classes):
+
     frame_with_rect = []
     with tf.device(device_name):
         for frame in frame_list:
@@ -83,6 +84,7 @@ def detection_gpu(frame_list, device_name,
             end = time.time()
             cv2.putText(frame, '{:.2f}ms'.format((end - start) * 1000), (40, 40),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 0, 0), 2)
+            frame = cv2.resize(frame, (800, 800))
             frame_with_rect.append(frame)
             cv2.imshow(device_name, frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):

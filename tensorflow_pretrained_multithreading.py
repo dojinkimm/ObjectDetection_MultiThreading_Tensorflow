@@ -22,7 +22,7 @@ def arg_parse():
     parser.add_argument("--frozen", help="Frozen inference pb file",
                         default="faster_rcnn_inception_v2_coco_2018_01_28/frozen_inference_graph.pb")
     parser.add_argument("--conf", dest="confidence", help="Confidence threshold for predictions", default=0.5)
-    parser.add_argument("--save", help="Whether to save newly created vidoe", default=False, type=bool)
+    parser.add_argument("--save", help="Whether to save newly created video", default=False, type=bool)
     return parser.parse_args()
 
 
