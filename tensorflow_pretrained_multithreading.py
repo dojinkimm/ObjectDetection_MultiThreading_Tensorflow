@@ -120,11 +120,11 @@ def main():
         fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
         videoWriter = cv2.VideoWriter('video_result.mp4', fourcc, video_fps, (video_width, video_height))
 
-    # gpu가 몇개인지 알아낸다
+    # find number of gpus that is available
     gpus = tf.config.experimental.list_logical_devices('GPU')
     frame_length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
-    # gpu개수에 맞춰서 frame을 나눈다
+    # divide frames of video by number of gpus
     div = frame_length // len(gpus)
     divide_point = [i for i in range(frame_length) if i != 0 and i % div == 0]
     divide_point.pop()
@@ -160,21 +160,22 @@ def main():
                     tensor_dict[key] = tf.get_default_graph().get_tensor_by_name(
                         tensor_name)
 
-            # Threading을 통해서 여러 frame들을 detection하게 한다
+            # Process object detection using threading
             thread_detection = [ThreadWithReturnValue(target=detection_gpu,
                                                       args=(frame_list[i], gpu.name, sess, tensor_dict, category_index, args.confidence, detection_graph))
                                 for i, gpu in enumerate(gpus)]
 
             final_list = []
-            # Threading 을 시작한다
+
+            # Begin operating threads
             for th in thread_detection:
                 th.start()
 
-            # Threading 이 끝나면 return 받은 값을 새로운 리스트에 담는다
+            # Once tasks are completed get return value (frames) and put to new list
             for th in thread_detection:
                 final_list.extend(th.join())
 
-            # return 받은 value 를 video 에 작성한다
+            # Write a video
             if args.save:
                 for f in final_list:
                     videoWriter.write(f)
