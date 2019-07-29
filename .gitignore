@@ -1,0 +1,21 @@
+# models
+darknet/*
+!darknet/yolo_anchors.txt
+faster_rcnn_resnet101_coco_2018_01_28/*
+faster_rcnn_inception_v2_coco_2018_01_28/*
+faster_rcnn_resnet50_coco_2018_01_28/*
+mask_rcnn_inception_v2_coco_2018_01_28/*
+
+# images and videos and pretrained models
+data/*
+assets/*
+!assets/cars.mp4
+!assets/cars2.mp4
+!assets/peopledesk.mp4
+
+
+
+# auto-generated folders
+.idea/*
+__pycache__/*
+models/__pycache__/*
