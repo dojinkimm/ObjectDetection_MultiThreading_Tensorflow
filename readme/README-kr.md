@@ -73,12 +73,21 @@ python convert_weight.py
 비디오 저장을 원한다면 `--save True`를 argument에 추가해줘야 합니다.
 #### FasterRCNN Tensorflow
 ```Shell
-python tensorflow_pretrained_multithreading.py --video assets/cars.mp4 --frozen /path/to/frozen_inference_graph.pb --conf 0.5 --save True
+python tensorflow_pretrained_multithreading.py \
+    --video assets/cars.mp4 \
+    --frozen /path/to/frozen_inference_graph.pb \
+    --conf 0.5 \
+    --save True
 ```
 
 #### Yolo Tensorflow
 ```Shell
-python tensorflow_yolo_tensorflow_pretrained_multithreading.py --video assets/cars.mp4 --ckpt darknet/yolov3.ckpt --conf 0.5 --nms 0.4 --anchor_path darknet/yolo_anchors.txt --save True
+python tensorflow_yolo_tensorflow_pretrained_multithreading.py \
+    --video assets/cars.mp4 \
+    --ckpt darknet/yolov3.ckpt \
+    --conf 0.5 --nms 0.4 \
+    --anchor_path darknet/yolo_anchors.txt \
+    --save True
 ```
 두개의 GPU를 사용해서 동시에 object detection을 진행한 결과물이다.동시에 detection이 진행되지만 하나의 비디오로 저장된다.
 <div align="center">

@@ -64,12 +64,21 @@ Replace `/path/to/...` part with actual path to files. Saving video is set to `F
 you have to add `--save True`.
 #### FasterRCNN Tensorflow
 ```Shell
-python tensorflow_pretrained_multithreading.py --video assets/cars.mp4 --frozen /path/to/frozen_inference_graph.pb --conf 0.5 --save True
+python tensorflow_pretrained_multithreading.py \
+    --video assets/cars.mp4 \
+    --frozen /path/to/frozen_inference_graph.pb \
+    --conf 0.5 \
+    --save True
 ```
 
 #### Yolo Tensorflow
 ```Shell
-python tensorflow_yolo_tensorflow_pretrained_multithreading.py --video assets/cars.mp4 --ckpt darknet/yolov3.ckpt --conf 0.5 --nms 0.4 --anchor_path darknet/yolo_anchors.txt --save True
+python tensorflow_yolo_tensorflow_pretrained_multithreading.py \
+    --video assets/cars.mp4 \
+    --ckpt darknet/yolov3.ckpt \
+    --conf 0.5 --nms 0.4 \
+    --anchor_path darknet/yolo_anchors.txt \
+    --save True
 ```
 This is an output of object detection using 2 GPUs. Although detections are done concurrently it is saved to one single video.
 <div align="center">
