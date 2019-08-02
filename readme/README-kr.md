@@ -88,13 +88,13 @@ python tensorflow_yolo_tensorflow_pretrained_multithreading.py \
     --conf 0.5 --nms 0.4 \
     --anchor_path darknet/yolo_anchors.txt \
     --save True
-```
+```ㅑ
 두개의 GPU를 사용해서 동시에 object detection을 진행한 결과물이다.동시에 detection이 진행되지만 하나의 비디오로 저장된다.
 <div align="center">
-<img src="readme/multithread_cars.gif" width="600px"/>
+<img src="multithread_cars.gif" width="600px"/>
 </div>
 <div align="center">
-<img src="readme/multithread_image.png"/>
+<img src="multithread_image.png"/>
 </div>
 
 
