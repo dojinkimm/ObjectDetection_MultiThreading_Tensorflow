@@ -84,7 +84,6 @@ def detection_gpu(frame_list, device_name,
             end = time.time()
             cv2.putText(frame, '{:.2f}ms'.format((end - start) * 1000), (40, 40),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 0, 0), 2)
-            frame = cv2.resize(frame, (800, 800))
             frame_with_rect.append(frame)
             cv2.imshow(device_name, frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
