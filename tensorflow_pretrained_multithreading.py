@@ -182,9 +182,4 @@ def main():
 
 
 if __name__ == "__main__":
-    s = time.time()
     main()
-    e = time.time()
-    print((e-s))
-
-# tensorflow pretrained - 46.5966272354126

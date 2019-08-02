@@ -18,7 +18,7 @@ from thread_w_return import *
 def arg_parse():
     parser = argparse.ArgumentParser(description="Tensorflow Yolov3")
     parser.add_argument("--video", help="Path where video is located",
-                        default="assets/cars4.mp4", type=str)
+                        default="assets/cars3.mp4", type=str)
     parser.add_argument("--ckpt",  type=str, default="darknet/yolov3.ckpt",
                         help="The path of the weights to restore.")
     parser.add_argument("--conf", dest="confidence", help="Confidence threshold for predictions", default=0.5)
@@ -157,7 +157,6 @@ def main():
 
         saver = tf.train.Saver()
         saver.restore(sess, args.ckpt)
-        s = time.time()
 
         # Process object detection using threading
         thread_detection = [ThreadWithReturnValue(target=detection_gpu,
@@ -179,8 +178,6 @@ def main():
         if args.save:
             for f in final_list:
                 videoWriter.write(f)
-    e = time.time()
-    print((e-s)*1000)
 
 
 if __name__ == "__main__":
