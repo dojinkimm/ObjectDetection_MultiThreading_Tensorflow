@@ -18,7 +18,7 @@ from thread_w_return import *
 def arg_parse():
     parser = argparse.ArgumentParser(description="Tensorflow Yolov3")
     parser.add_argument("--video", help="Path where video is located",
-                        default="assets/cars3.mp4", type=str)
+                        default="assets/cars.mp4", type=str)
     parser.add_argument("--ckpt",  type=str, default="darknet/yolov3.ckpt",
                         help="The path of the weights to restore.")
     parser.add_argument("--conf", dest="confidence", help="Confidence threshold for predictions", default=0.5)
@@ -62,7 +62,6 @@ def run_inference_for_single_image(frame, lbox_resize, sess, input_data, inp_dim
 def detection_gpu(frame_list, device_name,
                   letterbox, sess, input_data,
                   inp_dim, boxes, scores, labels, classes):
-
     frame_with_rect = []
     with tf.device(device_name):
         for frame in frame_list:
@@ -164,7 +163,6 @@ def main():
                             for i, gpu in enumerate(gpus)]
 
         final_list = []
-
         # Begin operating threads
         for th in thread_detection:
             th.start()
